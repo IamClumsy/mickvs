@@ -20,9 +20,9 @@
       --cool-blue:    #0090FF;
       --cool-dark:    #001BBD;
       --ink:          #0a0a0a;
-      --paper:        #0d0d16;
-      --panel-border: 4px solid #1e1e2e;
-      --gutter:       6px;
+      --paper:        #0a0a12;
+      --gutter:       8px;
+      --border:       5px solid rgba(255,255,255,0.13);
     }
 
     html { scroll-behavior: smooth; }
@@ -30,13 +30,43 @@
     body {
       font-family: 'Oswald', sans-serif;
       background-color: var(--paper);
-      background-image: radial-gradient(circle, rgba(85,252,255,0.04) 1px, transparent 1px);
-      background-size: 22px 22px;
+      background-image: radial-gradient(circle, rgba(85,252,255,0.06) 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
       color: #e0e0ef;
       overflow-x: hidden;
     }
 
-    /* ── Gradient accent bar ─────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       MASTHEAD
+    ══════════════════════════════════════════════════════ */
+    .masthead {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 24px;
+      border-bottom: 4px solid var(--warm-yellow);
+      font-family: 'Oswald', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      gap: 12px;
+    }
+
+    .masthead-center {
+      font-family: 'Bangers', cursive;
+      font-size: 1.4rem;
+      letter-spacing: 7px;
+      background: linear-gradient(90deg, var(--warm-yellow), var(--cool-cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      white-space: nowrap;
+    }
+
+    /* ══════════════════════════════════════════════════════
+       GRADIENT BAR
+    ══════════════════════════════════════════════════════ */
     .gradient-bar {
       height: 7px;
       background: linear-gradient(90deg,
@@ -44,7 +74,9 @@
         var(--cool-cyan), var(--cool-blue), var(--cool-dark));
     }
 
-    /* ── Page wrapper ────────────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       PAGE WRAPPER
+    ══════════════════════════════════════════════════════ */
     .comic-page {
       max-width: 1200px;
       margin: 0 auto;
@@ -53,144 +85,74 @@
       gap: var(--gutter);
     }
 
-    /* ── Generic panel shell ─────────────────────────────── */
+    /* ══════════════════════════════════════════════════════
+       PANEL SHELL
+    ══════════════════════════════════════════════════════ */
     .panel {
-      border: var(--panel-border);
+      border: var(--border);
       position: relative;
       overflow: hidden;
     }
 
-    /* ── Panel header band ───────────────────────────────── */
-    .panel-header {
-      background: #1a1a2e;
-      color: #fff;
+    /* ── Panel corner number ── */
+    .panel-num {
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
       font-family: 'Bangers', cursive;
-      font-size: 1.75rem;
-      letter-spacing: 4px;
-      padding: 8px 20px;
-      text-transform: uppercase;
-      border-bottom: var(--panel-border);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.18);
+      z-index: 5;
     }
 
-    .panel-header.blue  { background: var(--cool-blue); }
-    .panel-header.large { font-size: 2.2rem; padding: 14px 24px; }
+    /* ── Panel header ── */
+    .panel-header {
+      background: #0f0f1e;
+      color: #fff;
+      font-family: 'Bangers', cursive;
+      font-size: 1.9rem;
+      letter-spacing: 5px;
+      padding: 10px 22px;
+      text-transform: uppercase;
+      border-bottom: var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-    /* ── Caption box (narration) ─────────────────────────── */
+    .panel-header.blue   { background: #0055aa; }
+    .panel-header.large  { font-size: 2.4rem; padding: 14px 24px; }
+
+    /* ── Caption box ── */
     .caption {
       display: inline-block;
       background: var(--warm-yellow);
-      border: 3px solid var(--ink);
+      border: 3px solid rgba(0,0,0,0.6);
       font-family: 'Oswald', sans-serif;
       font-weight: 700;
-      font-size: 0.7rem;
+      font-size: 0.68rem;
       letter-spacing: 3px;
       text-transform: uppercase;
+      color: #000;
       padding: 4px 10px;
       position: absolute;
-      top: 14px;
-      left: 14px;
       z-index: 10;
     }
 
-    /* ════════════════════════════════════════════════════════
-       HERO
-    ════════════════════════════════════════════════════════ */
-    .hero-panel {
-      background: var(--ink);
-      min-height: 580px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 40px 80px;
-    }
+    .caption-tl { top: 14px; left: 14px; }
+    .caption-tr { top: 14px; right: 14px; }
+    .caption-bl { bottom: 20px; left: 14px; }
 
-    .hero-panel::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255,218,36,0.12) 1.5px, transparent 1.5px);
-      background-size: 18px 18px;
-      pointer-events: none;
-    }
-
-    .hero-logo {
-      width: clamp(120px, 18vw, 200px);
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-      filter: drop-shadow(0 0 24px rgba(85,252,255,0.35));
-      animation: floatLogo 3.5s ease-in-out infinite;
-    }
-
-    @keyframes floatLogo {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-10px); }
-    }
-
-    .hero-name {
-      font-family: 'Bangers', cursive;
-      font-size: clamp(3.5rem, 10vw, 8rem);
-      letter-spacing: 6px;
-      line-height: 0.9;
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(135deg, var(--warm-yellow) 0%, var(--warm-orange) 50%, var(--warm-purple) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-vs {
-      font-family: 'Bangers', cursive;
-      font-size: clamp(1.2rem, 3vw, 2rem);
-      letter-spacing: 10px;
-      color: rgba(255,255,255,0.5);
-      position: relative;
-      z-index: 1;
-      margin: 6px 0;
-    }
-
-    .hero-internet {
-      font-family: 'Bangers', cursive;
-      font-size: clamp(3.5rem, 10vw, 8rem);
-      letter-spacing: 6px;
-      line-height: 0.9;
-      position: relative;
-      z-index: 1;
-      background: linear-gradient(135deg, var(--cool-cyan) 0%, var(--cool-blue) 60%, var(--cool-dark) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-subtitle {
-      font-family: 'Oswald', sans-serif;
-      font-weight: 500;
-      font-size: clamp(0.75rem, 2vw, 1.05rem);
-      color: rgba(255,255,255,0.7);
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-      margin-top: 22px;
-    }
-
-    .hero-subtitle span {
-      color: var(--warm-yellow);
-      margin: 0 10px;
-    }
-
-    /* Starburst */
+    /* ── Starburst ── */
     .starburst {
       position: absolute;
-      z-index: 2;
+      z-index: 4;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: 'Bangers', cursive;
-      letter-spacing: 2px;
+      pointer-events: none;
     }
 
     .starburst svg { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -199,135 +161,290 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      color: var(--ink);
       line-height: 1.1;
     }
 
-    .starburst-hero {
-      width: 140px;
-      height: 140px;
-      bottom: 30px;
-      right: 50px;
+    /* ── Between-panel transition bars ── */
+    .meanwhile {
+      text-align: center;
+      font-family: 'Bangers', cursive;
+      font-size: 1rem;
+      letter-spacing: 6px;
+      color: rgba(255,255,255,0.25);
+      padding: 4px 0;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .meanwhile::before,
+    .meanwhile::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ══════════════════════════════════════════════════════
+       HERO PANEL
+    ══════════════════════════════════════════════════════ */
+    .hero-panel {
+      background: #050508;
+      min-height: 640px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 70px 40px 90px;
+    }
+
+    /* Speed lines */
+    .hero-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-conic-gradient(
+        rgba(255,218,36,0.04) 0deg 2deg,
+        transparent 2deg 14deg
+      );
+      pointer-events: none;
+    }
+
+    /* Ben-Day dots overlay */
+    .hero-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,218,36,0.14) 3px, transparent 3px);
+      background-size: 28px 28px;
+      pointer-events: none;
+      mix-blend-mode: screen;
+    }
+
+    .hero-logo {
+      width: clamp(130px, 18vw, 210px);
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 0 30px rgba(85,252,255,0.5)) drop-shadow(0 0 60px rgba(255,111,31,0.3));
+      animation: floatLogo 3.5s ease-in-out infinite;
+    }
+
+    @keyframes floatLogo {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50%       { transform: translateY(-12px) rotate(1deg); }
+    }
+
+    .hero-name {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(4rem, 12vw, 10rem);
+      letter-spacing: 8px;
+      line-height: 0.88;
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg, var(--warm-yellow) 0%, var(--warm-orange) 50%, var(--warm-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.8));
+    }
+
+    .hero-vs {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+      letter-spacing: 12px;
+      color: rgba(255,255,255,0.4);
+      position: relative;
+      z-index: 2;
+      margin: 8px 0;
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+    }
+
+    .hero-internet {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(4rem, 12vw, 10rem);
+      letter-spacing: 8px;
+      line-height: 0.88;
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(135deg, var(--cool-cyan) 0%, var(--cool-blue) 60%, var(--cool-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.8));
+    }
+
+    .hero-subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 500;
+      font-size: clamp(0.7rem, 1.8vw, 1rem);
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 2;
+      margin-top: 24px;
+      border-top: 2px solid rgba(255,255,255,0.15);
+      border-bottom: 2px solid rgba(255,255,255,0.15);
+      padding: 10px 20px;
+    }
+
+    .hero-subtitle span { color: var(--warm-yellow); margin: 0 10px; }
+
+    /* Hero starbursts */
+    .sb-hero-br {
+      width: 160px; height: 160px;
+      bottom: 28px; right: 44px;
       transform: rotate(-14deg);
-      font-size: 1.6rem;
+      animation: wobble 4s ease-in-out infinite;
     }
 
-    .starburst-hero2 {
-      width: 110px;
-      height: 110px;
-      top: 30px;
-      left: 40px;
+    .sb-hero-tl {
+      width: 120px; height: 120px;
+      top: 28px; left: 36px;
       transform: rotate(10deg);
-      font-size: 0.95rem;
+      animation: wobble 5s ease-in-out infinite reverse;
     }
 
-    /* ════════════════════════════════════════════════════════
+    .sb-hero-tr {
+      width: 100px; height: 100px;
+      top: 24px; right: 36px;
+      transform: rotate(-5deg);
+      animation: wobble 6s ease-in-out infinite;
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-14deg) scale(1); }
+      50%       { transform: rotate(-10deg) scale(1.05); }
+    }
+
+    /* ══════════════════════════════════════════════════════
        TWO-COLUMN ROW
-    ════════════════════════════════════════════════════════ */
+    ══════════════════════════════════════════════════════ */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--gutter);
     }
 
-    @media (max-width: 750px) {
-      .two-col { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 750px) { .two-col { grid-template-columns: 1fr; } }
 
-    /* ── Origin Story ────────────────────────────────────── */
-    .origin-panel { background: #141420; }
+    /* ── Origin Story ── */
+    .origin-panel { background: #0e0e1c; }
 
-    .origin-content { padding: 28px 30px 36px; }
+    .origin-content { padding: 30px 32px 40px; }
 
     .origin-content p {
       font-family: 'Special Elite', cursive;
-      font-size: 1rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.78);
+      font-size: 1.02rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.8);
     }
 
-    .origin-content p + p { margin-top: 14px; }
+    .origin-content p + p { margin-top: 16px; }
+
+    /* Halftone dots behind origin text */
+    .origin-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,218,36,0.08) 4px, transparent 4px);
+      background-size: 32px 32px;
+      pointer-events: none;
+    }
 
     /* Speech bubble */
     .speech-bubble {
       background: var(--warm-yellow);
-      border: 3px solid #2a2a3c;
-      border-radius: 18px;
-      padding: 16px 22px;
-      margin-top: 28px;
+      border: 4px solid rgba(0,0,0,0.5);
+      border-radius: 22px;
+      padding: 18px 24px;
+      margin-top: 30px;
       position: relative;
+      z-index: 1;
       font-family: 'Bangers', cursive;
-      font-size: 1.2rem;
+      font-size: 1.35rem;
       letter-spacing: 1px;
-      line-height: 1.4;
-      color: var(--ink);
+      line-height: 1.45;
+      color: #000;
     }
 
     .speech-bubble::after {
       content: '';
       position: absolute;
-      bottom: -22px;
-      left: 36px;
-      border: 11px solid transparent;
-      border-top-color: #2a2a3c;
+      bottom: -24px; left: 38px;
+      border: 12px solid transparent;
+      border-top-color: rgba(0,0,0,0.5);
     }
 
     .speech-bubble::before {
       content: '';
       position: absolute;
-      bottom: -15px;
-      left: 38px;
-      border: 9px solid transparent;
+      bottom: -16px; left: 40px;
+      border: 10px solid transparent;
       border-top-color: var(--warm-yellow);
       z-index: 1;
     }
 
-    /* ── Powers Panel ────────────────────────────────────── */
-    .powers-panel { background: var(--ink); }
+    /* ── Powers Panel ── */
+    .powers-panel { background: #050510; }
 
-    .powers-panel::after {
+    .powers-panel::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(85,252,255,0.08) 1px, transparent 1px);
-      background-size: 16px 16px;
+      background-image: radial-gradient(circle, rgba(85,252,255,0.12) 4px, transparent 4px);
+      background-size: 28px 28px;
       pointer-events: none;
     }
 
     .powers-content {
-      padding: 24px 28px 28px;
+      padding: 26px 30px 30px;
       position: relative;
       z-index: 1;
     }
 
-    .skill-row { margin-bottom: 18px; }
+    .skill-row { margin-bottom: 20px; }
 
     .skill-label {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       font-family: 'Oswald', sans-serif;
-      font-weight: 600;
-      font-size: 0.8rem;
+      font-weight: 700;
+      font-size: 0.78rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: #fff;
-      margin-bottom: 5px;
+      margin-bottom: 6px;
     }
 
-    .skill-stars { color: var(--warm-yellow); font-size: 0.75rem; letter-spacing: 1px; }
+    .skill-stars { color: var(--warm-yellow); font-size: 0.78rem; }
 
     .skill-track {
-      background: rgba(255,255,255,0.1);
-      border: 2px solid rgba(255,255,255,0.2);
-      height: 12px;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.18);
+      height: 14px;
+      position: relative;
+      overflow: visible;
     }
 
-    .skill-fill { height: 100%; }
+    .skill-fill { height: 100%; position: relative; }
 
-    /* ════════════════════════════════════════════════════════
+    .skill-fill::after {
+      content: '';
+      position: absolute;
+      right: -2px; top: -2px; bottom: -2px;
+      width: 6px;
+      background: #fff;
+      opacity: 0.7;
+    }
+
+    /* ══════════════════════════════════════════════════════
        BATTLE RECORD
-    ════════════════════════════════════════════════════════ */
+    ══════════════════════════════════════════════════════ */
     .battle-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -336,148 +453,194 @@
       background: var(--paper);
     }
 
-    @media (max-width: 600px) {
-      .battle-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 600px) { .battle-grid { grid-template-columns: 1fr; } }
 
     .battle-card {
-      border: 3px solid #2a2a3c;
-      padding: 26px 22px 22px;
+      border: 4px solid rgba(255,255,255,0.12);
+      padding: 30px 24px 24px;
       position: relative;
       overflow: hidden;
-      min-height: 210px;
+      min-height: 240px;
       transition: transform 0.15s, box-shadow 0.15s;
     }
 
     .battle-card:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 5px 5px 0 rgba(85,252,255,0.2);
+      transform: translate(-4px, -4px);
+      box-shadow: 6px 6px 0 rgba(255,218,36,0.25);
+      border-color: rgba(255,218,36,0.4);
+    }
+
+    /* Ben-Day halftone on each card */
+    .battle-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 3px, transparent 3px);
+      background-size: 22px 22px;
+      pointer-events: none;
     }
 
     .action-word {
       display: block;
       font-family: 'Bangers', cursive;
-      font-size: 3rem;
-      letter-spacing: 3px;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      letter-spacing: 4px;
       line-height: 1;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
     }
 
     .battle-card p {
       font-family: 'Special Elite', cursive;
-      font-size: 0.92rem;
-      line-height: 1.65;
+      font-size: 0.95rem;
+      line-height: 1.68;
       position: relative;
       z-index: 1;
     }
 
     .ghost-num {
       position: absolute;
-      right: -12px;
-      bottom: -24px;
+      right: -10px;
+      bottom: -22px;
       font-family: 'Bangers', cursive;
-      font-size: 9rem;
+      font-size: 10rem;
       line-height: 1;
-      opacity: 0.07;
+      opacity: 0.06;
       pointer-events: none;
       user-select: none;
     }
 
-    /* ════════════════════════════════════════════════════════
+    /* Card mini starburst */
+    .card-burst {
+      width: 80px; height: 80px;
+      top: 12px; right: 12px;
+    }
+
+    /* ══════════════════════════════════════════════════════
        ARSENAL STRIP
-    ════════════════════════════════════════════════════════ */
+    ══════════════════════════════════════════════════════ */
     .arsenal-strip {
-      background: #141420;
-      border-top: var(--panel-border);
-      border-bottom: var(--panel-border);
+      background: #0e0e1c;
+      border-top: var(--border);
+      border-bottom: var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .arsenal-strip::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,218,36,0.07) 3px, transparent 3px);
+      background-size: 24px 24px;
+      pointer-events: none;
     }
 
     .arsenal-inner {
       display: flex;
       flex-wrap: wrap;
-      gap: 0;
-      padding: 0;
+      position: relative;
+      z-index: 1;
     }
 
     .badge {
-      border-right: var(--panel-border);
-      padding: 16px 24px;
+      border-right: 3px solid rgba(255,255,255,0.1);
+      padding: 20px 24px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
+      gap: 5px;
       flex: 1;
       min-width: 120px;
       text-align: center;
-      transition: background 0.15s, color 0.15s;
+      transition: background 0.15s, transform 0.15s;
       cursor: default;
+      position: relative;
     }
 
     .badge:last-child { border-right: none; }
 
-    .badge { border-right-color: #2a2a3c; }
-    .badge:hover { background: #1e1e2e; }
-    .badge:hover .badge-title { color: var(--cool-cyan); }
-    .badge:hover .badge-sub { color: rgba(85,252,255,0.55); }
+    .badge:hover { background: rgba(255,218,36,0.1); transform: translateY(-3px); }
+    .badge:hover .badge-title { color: var(--warm-yellow); }
+    .badge:hover .badge-sub { color: rgba(255,218,36,0.6); }
 
     .badge-title {
       font-family: 'Bangers', cursive;
-      font-size: 1.3rem;
-      letter-spacing: 2px;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
       color: var(--warm-yellow);
       transition: color 0.15s;
+      text-shadow: 0 0 12px rgba(255,218,36,0.4);
     }
 
     .badge-sub {
       font-family: 'Oswald', sans-serif;
       font-weight: 500;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.38);
       transition: color 0.15s;
     }
 
-    /* ════════════════════════════════════════════════════════
+    /* ══════════════════════════════════════════════════════
        CONTACT
-    ════════════════════════════════════════════════════════ */
+    ══════════════════════════════════════════════════════ */
     .contact-panel {
-      background: var(--cool-dark);
+      background: #000b2e;
       text-align: center;
-      padding: 64px 40px;
+      padding: 70px 40px;
+      position: relative;
+      overflow: hidden;
     }
 
+    /* Big cyan halftone dots */
     .contact-panel::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: radial-gradient(circle, rgba(85,252,255,0.1) 1.5px, transparent 1.5px);
-      background-size: 20px 20px;
+      background-image: radial-gradient(circle, rgba(85,252,255,0.1) 5px, transparent 5px);
+      background-size: 36px 36px;
+      pointer-events: none;
+    }
+
+    /* Speed lines */
+    .contact-panel::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-conic-gradient(
+        rgba(85,252,255,0.03) 0deg 2deg,
+        transparent 2deg 16deg
+      );
       pointer-events: none;
     }
 
     .contact-headline {
       font-family: 'Bangers', cursive;
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      letter-spacing: 5px;
+      font-size: clamp(3rem, 7vw, 6rem);
+      letter-spacing: 6px;
       color: var(--cool-cyan);
       position: relative;
       z-index: 1;
       margin-bottom: 4px;
-      text-shadow: 0 0 30px rgba(85,252,255,0.3);
+      text-shadow:
+        4px 4px 0 rgba(0,0,0,0.5),
+        0 0 40px rgba(85,252,255,0.4);
     }
 
     .contact-sub {
       font-family: 'Oswald', sans-serif;
       font-weight: 400;
-      font-size: 0.85rem;
-      letter-spacing: 5px;
+      font-size: 0.8rem;
+      letter-spacing: 6px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.35);
       position: relative;
       z-index: 1;
-      margin-bottom: 44px;
+      margin-bottom: 48px;
     }
 
     .contact-links {
@@ -493,57 +656,85 @@
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      border: 3px solid;
+      border: 4px solid;
       font-family: 'Bangers', cursive;
-      font-size: 1.15rem;
-      letter-spacing: 2px;
-      padding: 12px 24px;
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      padding: 13px 26px;
       text-decoration: none;
       text-transform: uppercase;
       transition: background 0.15s, color 0.15s, transform 0.1s, box-shadow 0.1s;
     }
 
-    .contact-link:hover {
-      transform: translate(-3px, -3px);
+    .contact-link:hover { transform: translate(-4px, -4px); }
+
+    .link-linkedin { border-color: var(--cool-cyan); color: var(--cool-cyan); }
+    .link-linkedin:hover { background: var(--cool-cyan); color: #000b2e; box-shadow: 6px 6px 0 rgba(85,252,255,0.3); }
+
+    .link-github { border-color: #fff; color: #fff; }
+    .link-github:hover { background: #fff; color: #000b2e; box-shadow: 6px 6px 0 rgba(255,255,255,0.2); }
+
+    .link-email { border-color: var(--warm-orange); color: var(--warm-orange); }
+    .link-email:hover { background: var(--warm-orange); color: #fff; box-shadow: 6px 6px 0 rgba(255,111,31,0.3); }
+
+    .link-twitter { border-color: var(--warm-yellow); color: var(--warm-yellow); }
+    .link-twitter:hover { background: var(--warm-yellow); color: #000; box-shadow: 6px 6px 0 rgba(255,218,36,0.3); }
+
+    /* ══════════════════════════════════════════════════════
+       TO BE CONTINUED
+    ══════════════════════════════════════════════════════ */
+    .to-be-continued {
+      text-align: right;
+      font-family: 'Bangers', cursive;
+      font-size: clamp(1.8rem, 4vw, 3.5rem);
+      letter-spacing: 5px;
+      color: rgba(255,255,255,0.12);
+      padding: 16px 24px 8px;
+      font-style: italic;
+      position: relative;
     }
 
-    .link-linkedin { border-color: var(--cool-cyan);  color: var(--cool-cyan);  }
-    .link-linkedin:hover { background: var(--cool-cyan);  color: var(--cool-dark); box-shadow: 5px 5px 0 rgba(85,252,255,0.3); }
+    .to-be-continued::before {
+      content: '▶▶';
+      margin-right: 12px;
+      font-size: 0.6em;
+      vertical-align: middle;
+      opacity: 0.6;
+    }
 
-    .link-github   { border-color: #fff; color: #fff; }
-    .link-github:hover   { background: #fff; color: var(--cool-dark); box-shadow: 5px 5px 0 rgba(255,255,255,0.2); }
-
-    .link-email    { border-color: var(--warm-orange); color: var(--warm-orange); }
-    .link-email:hover    { background: var(--warm-orange); color: #fff; box-shadow: 5px 5px 0 rgba(255,111,31,0.3); }
-
-    .link-twitter  { border-color: var(--warm-yellow); color: var(--warm-yellow); }
-    .link-twitter:hover  { background: var(--warm-yellow); color: var(--ink); box-shadow: 5px 5px 0 rgba(255,218,36,0.3); }
-
-    /* ════════════════════════════════════════════════════════
+    /* ══════════════════════════════════════════════════════
        FOOTER
-    ════════════════════════════════════════════════════════ */
+    ══════════════════════════════════════════════════════ */
     .comic-footer {
       text-align: center;
-      padding: 18px 20px;
+      padding: 14px 20px;
       font-family: 'Bangers', cursive;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       letter-spacing: 3px;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.15);
       text-transform: uppercase;
+      border-top: 2px solid rgba(255,255,255,0.06);
     }
 
-    /* ════════════════════════════════════════════════════════
+    /* ══════════════════════════════════════════════════════
        RESPONSIVE
-    ════════════════════════════════════════════════════════ */
+    ══════════════════════════════════════════════════════ */
     @media (max-width: 480px) {
-      .starburst-hero  { display: none; }
-      .starburst-hero2 { display: none; }
-      .hero-panel { padding: 40px 20px 60px; }
+      .sb-hero-br, .sb-hero-tl, .sb-hero-tr { display: none; }
+      .hero-panel { padding: 50px 20px 70px; }
+      .masthead-edge { display: none; }
       .origin-content, .powers-content { padding: 20px; }
     }
   </style>
 </head>
 <body>
+
+  <!-- ══════════ MASTHEAD ══════════ -->
+  <div class="masthead">
+    <span class="masthead-edge">ISSUE #001 &nbsp;·&nbsp; APRIL 2024</span>
+    <span class="masthead-center">THE DIGITAL DEFENDER</span>
+    <span class="masthead-edge">$4.99 &nbsp;·&nbsp; FREE ONLINE</span>
+  </div>
 
   <div class="gradient-bar"></div>
 
@@ -552,8 +743,21 @@
     <!-- ══════════════════ HERO ══════════════════ -->
     <div class="panel hero-panel">
 
-      <!-- Top-left caption -->
-      <div class="caption">Chapter 1 — The Origin</div>
+      <div class="caption caption-tl">Chapter 1 — Origin of the Defender</div>
+
+      <div class="caption caption-tr" style="background: var(--cool-cyan); color: #000;">⚡ CISSP Certified</div>
+
+      <!-- Top-right starburst -->
+      <div class="starburst sb-hero-tr">
+        <svg viewBox="0 0 100 100"><polygon points="50,2 59,34 91,34 65,54 75,88 50,68 25,88 35,54 9,34 41,34" fill="#A02361" stroke="rgba(0,0,0,0.4)" stroke-width="2"/></svg>
+        <div class="starburst-text" style="font-size:0.8rem; color:#fff; font-family:'Bangers',cursive; letter-spacing:1px;">NEW<br>THREAT<br>DETECTED!</div>
+      </div>
+
+      <!-- Top-left starburst -->
+      <div class="starburst sb-hero-tl">
+        <svg viewBox="0 0 100 100"><polygon points="50,2 59,34 91,34 65,54 75,88 50,68 25,88 35,54 9,34 41,34" fill="#55FCFF" stroke="rgba(0,0,0,0.4)" stroke-width="2"/></svg>
+        <div class="starburst-text" style="font-size:0.85rem; color:#001BBD; font-family:'Bangers',cursive; letter-spacing:1px;">100%<br>ETHICAL</div>
+      </div>
 
       <img class="hero-logo" src="assets/logo-symbol.png" alt="Mick vs the Internet mark">
 
@@ -569,34 +773,26 @@
         Former CISO
       </p>
 
-      <!-- POW starburst bottom-right -->
-      <div class="starburst starburst-hero">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="
-            50,2  59,34  91,34  65,54  75,88  50,68  25,88  35,54  9,34  41,34"
-            fill="#FFDA24" stroke="#0a0a0a" stroke-width="2.5"/>
-        </svg>
-        <div class="starburst-text" style="font-size:1.6rem;">POW!</div>
+      <!-- Bottom-right starburst -->
+      <div class="starburst sb-hero-br">
+        <svg viewBox="0 0 100 100"><polygon points="50,2 59,34 91,34 65,54 75,88 50,68 25,88 35,54 9,34 41,34" fill="#FFDA24" stroke="rgba(0,0,0,0.5)" stroke-width="2.5"/></svg>
+        <div class="starburst-text" style="font-size:1.8rem; color:#000; font-family:'Bangers',cursive; letter-spacing:2px;">POW!</div>
       </div>
 
-      <!-- ZAP starburst top-left -->
-      <div class="starburst starburst-hero2">
-        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <polygon points="
-            50,2  59,34  91,34  65,54  75,88  50,68  25,88  35,54  9,34  41,34"
-            fill="#55FCFF" stroke="#0a0a0a" stroke-width="2.5"/>
-        </svg>
-        <div class="starburst-text" style="font-size:0.95rem; color:#001BBD;">100%<br>ETHICAL</div>
-      </div>
-
+      <div class="panel-num">P.01</div>
     </div>
+
+    <!-- ══════════════════ TRANSITION ══════════════════ -->
+    <div class="meanwhile">✦ &nbsp; MEANWHILE, IN A DARK CORNER OF THE INTERNET... &nbsp; ✦</div>
 
     <!-- ══════════════════ ORIGIN + POWERS ══════════════════ -->
     <div class="two-col">
 
       <!-- Origin Story -->
       <div class="panel origin-panel">
-        <div class="panel-header">Origin Story</div>
+        <div class="panel-header">
+          <span style="color: var(--warm-yellow);">▶</span> Origin Story
+        </div>
         <div class="origin-content">
           <p>
             Mick Brown has spent 25+ years in the trenches of IT and information security — from
@@ -613,123 +809,127 @@
             "I speak fluent hacker<br>— and fluent executive."
           </div>
         </div>
+        <div class="panel-num">P.02</div>
       </div>
 
       <!-- Powers & Abilities -->
       <div class="panel powers-panel">
-        <div class="panel-header blue">Powers &amp; Abilities</div>
+        <div class="panel-header blue">
+          <span style="color: var(--cool-cyan);">⚡</span> Powers &amp; Abilities
+        </div>
         <div class="powers-content">
 
           <div class="skill-row">
-            <div class="skill-label">
-              <span>Security Sales Engineering</span>
-              <span class="skill-stars">★★★★★</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-fill" style="width:99%; background: linear-gradient(90deg, #FFDA24, #FF6F1F);"></div>
-            </div>
+            <div class="skill-label"><span>Security Sales Engineering</span><span class="skill-stars">★★★★★</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:99%; background: linear-gradient(90deg,#FFDA24,#FF6F1F);"></div></div>
           </div>
 
           <div class="skill-row">
-            <div class="skill-label">
-              <span>EDR / XDR Technologies</span>
-              <span class="skill-stars">★★★★★</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-fill" style="width:97%; background: linear-gradient(90deg, #FFDA24, #FF6F1F);"></div>
-            </div>
+            <div class="skill-label"><span>EDR / XDR Technologies</span><span class="skill-stars">★★★★★</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:97%; background: linear-gradient(90deg,#FFDA24,#FF6F1F);"></div></div>
           </div>
 
           <div class="skill-row">
-            <div class="skill-label">
-              <span>Compliance (NIST · PCI · HIPAA · FISMA)</span>
-              <span class="skill-stars">★★★★★</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-fill" style="width:98%; background: linear-gradient(90deg, #A02361, #FF6F1F);"></div>
-            </div>
+            <div class="skill-label"><span>Compliance (NIST · PCI · HIPAA · FISMA)</span><span class="skill-stars">★★★★★</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:98%; background: linear-gradient(90deg,#A02361,#FF6F1F);"></div></div>
           </div>
 
           <div class="skill-row">
-            <div class="skill-label">
-              <span>SIEM / SOC Operations</span>
-              <span class="skill-stars">★★★★★</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-fill" style="width:94%; background: linear-gradient(90deg, #A02361, #FF6F1F);"></div>
-            </div>
+            <div class="skill-label"><span>SIEM / SOC Operations</span><span class="skill-stars">★★★★★</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:94%; background: linear-gradient(90deg,#A02361,#FF6F1F);"></div></div>
           </div>
 
           <div class="skill-row">
-            <div class="skill-label">
-              <span>Enterprise Risk Management</span>
-              <span class="skill-stars">★★★★★</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-fill" style="width:96%; background: linear-gradient(90deg, #55FCFF, #0090FF);"></div>
-            </div>
+            <div class="skill-label"><span>Enterprise Risk Management</span><span class="skill-stars">★★★★★</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:96%; background: linear-gradient(90deg,#55FCFF,#0090FF);"></div></div>
           </div>
 
           <div class="skill-row">
-            <div class="skill-label">
-              <span>Cloud Security (AWS)</span>
-              <span class="skill-stars">★★★★☆</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-fill" style="width:87%; background: linear-gradient(90deg, #55FCFF, #0090FF);"></div>
-            </div>
+            <div class="skill-label"><span>Cloud Security (AWS)</span><span class="skill-stars">★★★★☆</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:87%; background: linear-gradient(90deg,#55FCFF,#0090FF);"></div></div>
           </div>
 
           <div class="skill-row">
-            <div class="skill-label">
-              <span>DLP · WAF · IDS/IPS · NAC</span>
-              <span class="skill-stars">★★★★☆</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-fill" style="width:90%; background: linear-gradient(90deg, #55FCFF, #001BBD);"></div>
-            </div>
+            <div class="skill-label"><span>DLP · WAF · IDS/IPS · NAC</span><span class="skill-stars">★★★★☆</span></div>
+            <div class="skill-track"><div class="skill-fill" style="width:90%; background: linear-gradient(90deg,#55FCFF,#001BBD);"></div></div>
           </div>
 
         </div>
+
+        <!-- Powers starburst -->
+        <div class="starburst" style="width:90px;height:90px;bottom:14px;right:14px;transform:rotate(8deg);">
+          <svg viewBox="0 0 100 100"><polygon points="50,2 59,34 91,34 65,54 75,88 50,68 25,88 35,54 9,34 41,34" fill="#FF6F1F" stroke="rgba(0,0,0,0.3)" stroke-width="2"/></svg>
+          <div class="starburst-text" style="font-size:0.75rem;color:#fff;font-family:'Bangers',cursive;letter-spacing:1px;">MAX<br>LEVEL!</div>
+        </div>
+
+        <div class="panel-num">P.03</div>
       </div>
 
     </div>
 
+    <!-- ══════════════════ TRANSITION ══════════════════ -->
+    <div class="meanwhile">✦ &nbsp; THE BATTLE RECORD — CLASSIFIED: EYES ONLY &nbsp; ✦</div>
+
     <!-- ══════════════════ BATTLE RECORD ══════════════════ -->
     <div class="panel">
-      <div class="panel-header large">⚡ Battle Record ⚡</div>
+      <div class="panel-header large">
+        <span style="color:var(--warm-yellow);">⚡</span> Battle Record <span style="color:var(--cool-cyan);">⚡</span>
+      </div>
       <div class="battle-grid">
 
-        <div class="battle-card" style="background:#141420;">
-          <span class="action-word" style="background: linear-gradient(135deg,#FFDA24,#FF6F1F); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">BOOM!</span>
+        <div class="battle-card" style="background:#0e0e1c;">
+          <!-- mini starburst -->
+          <div class="starburst card-burst">
+            <svg viewBox="0 0 100 100"><polygon points="50,2 59,34 91,34 65,54 75,88 50,68 25,88 35,54 9,34 41,34" fill="#FFDA24" stroke="rgba(0,0,0,0.3)" stroke-width="2"/></svg>
+            <div class="starburst-text" style="font-size:0.7rem;color:#000;font-family:'Bangers',cursive;letter-spacing:1px;">CISO!</div>
+          </div>
+          <span class="action-word" style="background:linear-gradient(135deg,#FFDA24,#FF6F1F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(3px 3px 0 rgba(0,0,0,0.5));">BOOM!</span>
           <p style="color:rgba(255,255,255,0.82);">Served as CISO at Lynx Technology Partners for 5 years — stood up enterprise-wide security programs covering PCI-DSS, FISMA, NIST 800-53, and HIPAA from the ground up, and built the vulnerability remediation program that kept them off the front page of the news.</p>
           <div class="ghost-num">01</div>
         </div>
 
-        <div class="battle-card" style="background:#0a0a0a;">
-          <span class="action-word" style="background: linear-gradient(135deg,#55FCFF,#0090FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">ZAP!</span>
+        <div class="battle-card" style="background:#040412;">
+          <div class="starburst card-burst">
+            <svg viewBox="0 0 100 100"><polygon points="50,2 59,34 91,34 65,54 75,88 50,68 25,88 35,54 9,34 41,34" fill="#55FCFF" stroke="rgba(0,0,0,0.3)" stroke-width="2"/></svg>
+            <div class="starburst-text" style="font-size:0.65rem;color:#001BBD;font-family:'Bangers',cursive;letter-spacing:1px;">CLOUD!</div>
+          </div>
+          <span class="action-word" style="background:linear-gradient(135deg,#55FCFF,#0090FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(3px 3px 0 rgba(0,0,0,0.5));">ZAP!</span>
           <p style="color:rgba(255,255,255,0.82);">As Security Manager and Cloud Architect at Change Healthcare (Emdeon), simultaneously implemented PCI-DSS 2.0, FISMA/CMS/NIST 800-53, SOX, and HIPAA compliance across a major healthcare infrastructure — without breaking a single production system.</p>
-          <div class="ghost-num" style="color:#fff;">02</div>
+          <div class="ghost-num" style="color:rgba(255,255,255,0.15);">02</div>
         </div>
 
-        <div class="battle-card" style="background:#A02361;">
-          <span class="action-word" style="color:#FFDA24;">POW!</span>
+        <div class="battle-card" style="background:#2a0018;">
+          <div class="starburst card-burst">
+            <svg viewBox="0 0 100 100"><polygon points="50,2 59,34 91,34 65,54 75,88 50,68 25,88 35,54 9,34 41,34" fill="#FF6F1F" stroke="rgba(0,0,0,0.3)" stroke-width="2"/></svg>
+            <div class="starburst-text" style="font-size:0.65rem;color:#fff;font-family:'Bangers',cursive;letter-spacing:1px;">S1!</div>
+          </div>
+          <span class="action-word" style="color:#FFDA24;text-shadow:4px 4px 0 rgba(0,0,0,0.5),-1px -1px 0 rgba(0,0,0,0.3);">POW!</span>
           <p style="color:rgba(255,255,255,0.88);">Currently at SentinelOne as Sales Engineer for Major Accounts — winning technical evaluations against the world's top security vendors by out-demonstrating, out-manoeuvring, and out-knowing the competition, one enterprise at a time.</p>
-          <div class="ghost-num" style="color:rgba(255,255,255,0.12);">03</div>
+          <div class="ghost-num" style="color:rgba(255,255,255,0.08);">03</div>
         </div>
 
-        <div class="battle-card" style="background:#001BBD;">
-          <span class="action-word" style="color:#55FCFF;">KAPOW!</span>
+        <div class="battle-card" style="background:#000a2a;">
+          <div class="starburst card-burst">
+            <svg viewBox="0 0 100 100"><polygon points="50,2 59,34 91,34 65,54 75,88 50,68 25,88 35,54 9,34 41,34" fill="#A02361" stroke="rgba(0,0,0,0.3)" stroke-width="2"/></svg>
+            <div class="starburst-text" style="font-size:0.6rem;color:#fff;font-family:'Bangers',cursive;letter-spacing:1px;">IBM!</div>
+          </div>
+          <span class="action-word" style="color:#55FCFF;text-shadow:4px 4px 0 rgba(0,0,0,0.5),-1px -1px 0 rgba(0,11,45,0.5);">KAPOW!</span>
           <p style="color:rgba(255,255,255,0.88);">Brought IBM's full security portfolio to Fortune 500 clients — delivering demonstrations, proof of concepts, and RFP responses that turned complex threat landscapes into decisive purchasing decisions. Then did it again at Trellix (McAfee).</p>
-          <div class="ghost-num" style="color:rgba(255,255,255,0.12);">04</div>
+          <div class="ghost-num" style="color:rgba(255,255,255,0.08);">04</div>
         </div>
 
       </div>
+      <div class="panel-num">P.04</div>
     </div>
+
+    <!-- ══════════════════ TRANSITION ══════════════════ -->
+    <div class="meanwhile">✦ &nbsp; ARSENAL &amp; CREDENTIALS — AUTHORISED PERSONNEL ONLY &nbsp; ✦</div>
 
     <!-- ══════════════════ ARSENAL STRIP ══════════════════ -->
     <div class="panel arsenal-strip">
-      <div class="panel-header">🛡 Arsenal &amp; Credentials</div>
+      <div class="panel-header">
+        <span style="color:var(--warm-yellow);">🛡</span> Arsenal &amp; Credentials
+      </div>
       <div class="arsenal-inner">
         <div class="badge"><div class="badge-title">CISSP</div><div class="badge-sub">ISC² Certified</div></div>
         <div class="badge"><div class="badge-title">ERPM</div><div class="badge-sub">Cert. ERPM Professional</div></div>
@@ -738,10 +938,12 @@
         <div class="badge"><div class="badge-title">25+</div><div class="badge-sub">Years in the Industry</div></div>
         <div class="badge"><div class="badge-title">SentinelOne</div><div class="badge-sub">Sales Engineer · Majors</div></div>
       </div>
+      <div class="panel-num">P.05</div>
     </div>
 
     <!-- ══════════════════ CONTACT ══════════════════ -->
     <div class="panel contact-panel">
+      <div class="caption caption-tl" style="background: var(--warm-orange); color:#fff;">Last Panel</div>
       <h2 class="contact-headline">Send a Signal</h2>
       <p class="contact-sub">To Headquarters</p>
       <div class="contact-links">
@@ -767,13 +969,17 @@
         </a>
 
       </div>
+      <div class="panel-num">P.06</div>
     </div>
 
   </div>
 
+  <!-- ══════════════════ TO BE CONTINUED ══════════════════ -->
+  <div class="to-be-continued">...TO BE CONTINUED</div>
+
   <div class="gradient-bar"></div>
   <div class="comic-footer">
-    &copy; 2024 Mick vs. The Internet &nbsp;—&nbsp; All Threats Neutralised &nbsp;—&nbsp; No Warranties Expressed or Implied
+    &copy; 2024 Mick vs. The Internet &nbsp;·&nbsp; All Threats Neutralised &nbsp;·&nbsp; No Warranties Expressed or Implied &nbsp;·&nbsp; The Internet Has Been Warned
   </div>
 
 </body>

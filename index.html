@@ -20,8 +20,8 @@
       --cool-blue:    #0090FF;
       --cool-dark:    #001BBD;
       --ink:          #0a0a0a;
-      --paper:        #f7f2e3;
-      --panel-border: 4px solid #0a0a0a;
+      --paper:        #0d0d16;
+      --panel-border: 4px solid #1e1e2e;
       --gutter:       6px;
     }
 
@@ -30,9 +30,9 @@
     body {
       font-family: 'Oswald', sans-serif;
       background-color: var(--paper);
-      background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+      background-image: radial-gradient(circle, rgba(85,252,255,0.04) 1px, transparent 1px);
       background-size: 22px 22px;
-      color: var(--ink);
+      color: #e0e0ef;
       overflow-x: hidden;
     }
 
@@ -62,7 +62,7 @@
 
     /* ── Panel header band ───────────────────────────────── */
     .panel-header {
-      background: var(--ink);
+      background: #1a1a2e;
       color: #fff;
       font-family: 'Bangers', cursive;
       font-size: 1.75rem;
@@ -235,7 +235,7 @@
     }
 
     /* ── Origin Story ────────────────────────────────────── */
-    .origin-panel { background: #fff; }
+    .origin-panel { background: #141420; }
 
     .origin-content { padding: 28px 30px 36px; }
 
@@ -243,7 +243,7 @@
       font-family: 'Special Elite', cursive;
       font-size: 1rem;
       line-height: 1.75;
-      color: #1c1c1c;
+      color: rgba(255,255,255,0.78);
     }
 
     .origin-content p + p { margin-top: 14px; }
@@ -251,7 +251,7 @@
     /* Speech bubble */
     .speech-bubble {
       background: var(--warm-yellow);
-      border: 3px solid var(--ink);
+      border: 3px solid #2a2a3c;
       border-radius: 18px;
       padding: 16px 22px;
       margin-top: 28px;
@@ -269,7 +269,7 @@
       bottom: -22px;
       left: 36px;
       border: 11px solid transparent;
-      border-top-color: var(--ink);
+      border-top-color: #2a2a3c;
     }
 
     .speech-bubble::before {
@@ -341,7 +341,7 @@
     }
 
     .battle-card {
-      border: 3px solid var(--ink);
+      border: 3px solid #2a2a3c;
       padding: 26px 22px 22px;
       position: relative;
       overflow: hidden;
@@ -351,7 +351,7 @@
 
     .battle-card:hover {
       transform: translate(-3px, -3px);
-      box-shadow: 5px 5px 0 var(--ink);
+      box-shadow: 5px 5px 0 rgba(85,252,255,0.2);
     }
 
     .action-word {
@@ -387,7 +387,7 @@
        ARSENAL STRIP
     ════════════════════════════════════════════════════════ */
     .arsenal-strip {
-      background: var(--warm-yellow);
+      background: #141420;
       border-top: var(--panel-border);
       border-bottom: var(--panel-border);
     }
@@ -416,15 +416,16 @@
 
     .badge:last-child { border-right: none; }
 
-    .badge:hover { background: var(--ink); }
-    .badge:hover .badge-title { color: var(--warm-yellow); }
-    .badge:hover .badge-sub { color: rgba(255,218,36,0.6); }
+    .badge { border-right-color: #2a2a3c; }
+    .badge:hover { background: #1e1e2e; }
+    .badge:hover .badge-title { color: var(--cool-cyan); }
+    .badge:hover .badge-sub { color: rgba(85,252,255,0.55); }
 
     .badge-title {
       font-family: 'Bangers', cursive;
       font-size: 1.3rem;
       letter-spacing: 2px;
-      color: var(--ink);
+      color: var(--warm-yellow);
       transition: color 0.15s;
     }
 
@@ -434,7 +435,7 @@
       font-size: 0.6rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: rgba(0,0,0,0.55);
+      color: rgba(255,255,255,0.4);
       transition: color 0.15s;
     }
 
@@ -527,7 +528,7 @@
       font-family: 'Bangers', cursive;
       font-size: 0.85rem;
       letter-spacing: 3px;
-      color: rgba(0,0,0,0.35);
+      color: rgba(255,255,255,0.2);
       text-transform: uppercase;
     }
 
@@ -699,9 +700,9 @@
       <div class="panel-header large">⚡ Battle Record ⚡</div>
       <div class="battle-grid">
 
-        <div class="battle-card" style="background:#fff;">
+        <div class="battle-card" style="background:#141420;">
           <span class="action-word" style="background: linear-gradient(135deg,#FFDA24,#FF6F1F); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">BOOM!</span>
-          <p>Served as CISO at Lynx Technology Partners for 5 years — stood up enterprise-wide security programs covering PCI-DSS, FISMA, NIST 800-53, and HIPAA from the ground up, and built the vulnerability remediation program that kept them off the front page of the news.</p>
+          <p style="color:rgba(255,255,255,0.82);">Served as CISO at Lynx Technology Partners for 5 years — stood up enterprise-wide security programs covering PCI-DSS, FISMA, NIST 800-53, and HIPAA from the ground up, and built the vulnerability remediation program that kept them off the front page of the news.</p>
           <div class="ghost-num">01</div>
         </div>
 
